@@ -1,5 +1,7 @@
 package jpabook.jpashop;
 
+import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderItem;
 import org.h2.engine.User;
 
 import javax.persistence.EntityManager;
@@ -19,7 +21,9 @@ public class JpaMain {
         tx.begin();
 
         try {
-
+            Order order = new Order();
+            em.persist(order);
+            order.addOrderItem(new OrderItem());
             tx.commit();
         }catch(Exception e) {
             System.out.println("e" + e.getMessage());
