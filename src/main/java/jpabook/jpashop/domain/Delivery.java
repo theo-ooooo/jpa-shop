@@ -1,16 +1,16 @@
 package jpabook.jpashop.domain;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Delivery extends BaseEntity {
     @Id @GeneratedValue
     private Long id;
 
-    private String city;
-    private String street;
-    private String zipcode;
-    private DeliveryStatus status;
+   @Embedded
+   private Address address;
+
+   private DeliveryStatus status;
 
     @OneToOne(mappedBy = "delivery")
     private Order order;
@@ -23,28 +23,12 @@ public class Delivery extends BaseEntity {
         this.id = id;
     }
 
-    public String getCity() {
-        return city;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public DeliveryStatus getStatus() {
